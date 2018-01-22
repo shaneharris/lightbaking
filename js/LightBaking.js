@@ -211,7 +211,7 @@
     var __sceneObjectsToBake = [];
 
     /**
-     * Some extensions to PointLight, AreaLight and Color in Three js
+     * Some extensions to PointLight, AmbientLight and Color in Three js
      * @param origin
      * @returns {*}
      */
@@ -235,7 +235,7 @@
         return point;
     };
 
-    THREE.AreaLight.prototype.randomAreaPoint = function () {
+    THREE.AmbientLight.prototype.randomAreaPoint = function () {
 
         var point = generateRandomPointOnPlane(this.quaternion, this.width, this.height);
         point.add(this.position);
@@ -2930,7 +2930,7 @@
 
     /**
      * Creates a JSON from the entire scene (scene.toJSON).
-     * It also handles AreaLights which are not supported in r71
+     * It also handles AmbientLights which are not supported in r71
      * @returns {*}
      */
     function sceneToJSON() {
@@ -2939,8 +2939,8 @@
 
         json.object.children.forEach(function (ele) {
 
-            // AreaLight is not handled atm, so we do it
-            if (ele.type === "AreaLight") {
+            // AmbientLight is not handled atm, so we do it
+            if (ele.type === "AmbientLight") {
 
                 __scene.traverse(
                     function (mesh) {
@@ -3989,7 +3989,7 @@
 
             }
 
-            if (_config.softShadows === true && ((light instanceof THREE.PointLight && light.userData.radius !== undefined) || light instanceof THREE.AreaLight )) {
+            if (_config.softShadows === true && ((light instanceof THREE.PointLight && light.userData.radius !== undefined) || light instanceof THREE.AmbientLight )) {
 
                 divFactor = _config.softShadowIntensity / _config.softShadowSamples;
 
