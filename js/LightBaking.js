@@ -2429,7 +2429,7 @@
                         var intersectMe;
 
                         if (_config.resetUserData) {
-
+                            mesh.userData.baking = mesh.userData.baking || {};
                             bakeMe = mesh.userData.baking.bakeMe;
                             intersectMe = mesh.userData.baking.intersectMe;
                         }
